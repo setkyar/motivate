@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Motivate</title>
+	<link
+  rel="stylesheet"
+  href="https://cdn.rawgit.com/IonicaBizau/github-calendar/gh-pages/dist/github-calendar.css"
+/>
+</head>
+<body id="start">	
+	<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+	<script src="https://cdn.rawgit.com/IonicaBizau/github-calendar/gh-pages/dist/github-calendar.min.js">
+	</script>
+	<script>
+		$(document).ready(function() {
+			$.getJSON( "/user.json", function( data ) {
+				var users = data.users;
+
+				for (var i = 0; i < users.length; i++) {
+					$('#start').append('<h1 style="text-align: center;">'+ users[i].name +'</h1><div id="'+ users[i].username +'">Loading the data just for you.</div><br/><hr/>');
+
+					GitHubCalendar('#' + users[i].username, users[i].username);
+				}			  
+			});
+		});
+	</script>
+</body>
+</html>
